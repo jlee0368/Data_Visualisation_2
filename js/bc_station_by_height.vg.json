@@ -1,0 +1,32 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://jlee0368.github.io/Data_Visualisation_2/data/MyRTKnet_station_loc_cleaned.csv"
+  },
+  "transform": [
+    {"calculate": "toNumber(datum['Height in meter'])", "as": "height_m"}
+  ],
+  "mark": {"type": "bar", "color": "#009dff"},
+  "encoding": {
+    "x": {
+      "field": "height_m", 
+      "bin": {"maxbins": 30}, 
+      "type": "quantitative", 
+      "title": "Station Height Range (m)",
+      "axis" : {"titleFontSize": 12}
+    },
+    "y": {
+      "aggregate": "count", 
+      "type": "quantitative", 
+      "title": "Number of Stations",
+      "axis": {"grid": false, "titleFontSize": 12} 
+    },
+    "tooltip": [ 
+      {"aggregate": "count", "title": "Number of MyRTKnet Stations"}
+    ]
+  },
+  "title": {"text": "Network Elevation Distribution (Histogram)", "fontSize": 24},
+  "width": 400,
+  "height": 400,
+  "config": {"view": {"stroke": null}}
+}

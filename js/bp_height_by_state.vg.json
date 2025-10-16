@@ -1,0 +1,57 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://jlee0368.github.io/Data_Visualisation_2/data/MyRTKnet_station_loc_cleaned.csv"
+  },
+  "transform": [
+    { "calculate": "toNumber(trim(datum['Height in meter']))", "as": "height_m" },
+    { "filter": "!isNaN(datum.height_m)" }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "boxplot", "extent": "min-max", "outliers": true, "size": 18 },
+      "encoding": {
+        "x": { "field": "height_m", "type": "quantitative", "title": "Station Height (m)", "axis" : {"titleFontSize": 12, "grid": false}},
+        "y": {
+          "field": "State",
+          "type": "nominal",
+          "title": "State",
+          "sort": { "op": "median", "field": "height_m", "order": "descending" },
+          "axis" : {"titleFontSize": 12}
+        },
+        "color": { "field": "State", "type": "nominal", "legend": null }
+      }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            { "op": "min",    "field": "height_m", "as": "min" },
+            { "op": "q1",     "field": "height_m", "as": "q1" },
+            { "op": "median", "field": "height_m", "as": "median" },
+            { "op": "q3",     "field": "height_m", "as": "q3" },
+            { "op": "max",    "field": "height_m", "as": "max" }
+          ],
+          "groupby": ["State"]
+        }
+      ],
+      "mark": { "type": "point", "opacity": 0 }, 
+      "encoding": {
+        "y": { "field": "State", "type": "nominal" },
+        "x": { "field": "median", "type": "quantitative" },  
+        "tooltip": [
+          { "field": "State",  "type": "nominal",       "title": "State" },
+          { "field": "min",    "type": "quantitative",  "title": "Min Height (m)", "format": ".2f" },
+          { "field": "q1",     "type": "quantitative",  "title": "25th Percentile (m)", "format": ".2f" },
+          { "field": "median", "type": "quantitative",  "title": "Median Height (m)", "format": ".2f" },
+          { "field": "q3",     "type": "quantitative",  "title": "75th Percentile (m)", "format": ".2f" },
+          { "field": "max",    "type": "quantitative",  "title": "Max Height (m)", "format": ".2f" }
+        ]
+      }
+    }
+  ],
+  "title": {"text": "Elevation by State (Box Plot)", "fontSize": 24},
+  "width": 400,
+  "height": 400,
+  "config": { "view": { "stroke": null } }
+}

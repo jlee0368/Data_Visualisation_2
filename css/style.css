@@ -1,0 +1,86 @@
+
+/* ---------- Poster-Style Visualization (MyRTKnet) ---------- */
+:root{
+  --bg-top:#eaf2ff;
+  --bg-mid:#f8fbff;
+  --bg-bot:#eef4ff;
+  --ink:#0b1b34;
+  --muted:#4c5c77;
+  --accent:#1e74ff;
+  --line:#d8e3ff;
+  --card:#ffffff;
+  --shadow:0 20px 60px rgba(9,21,61,.12);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  color:var(--ink);
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+  background: linear-gradient(180deg, var(--bg-top) 0%, var(--bg-mid) 40%, var(--bg-bot) 100%);
+}
+
+/* Content width suited for poster screens and print */
+.wrapper{max-width:1120px;margin:0 auto;padding:24px 18px 64px}
+
+/* --- HERO --- */
+.hero{
+  background: linear-gradient(180deg, rgba(255,255,255,.8), rgba(255,255,255,.55));
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:36px 28px 28px 28px;
+  box-shadow: var(--shadow);
+  margin:18px 0 26px 0;
+}
+.kickers{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:6px}
+.kickers .pill{
+  font-size:12px;color:#3260c8;border:1px solid #cfe0ff;background:#f4f8ff;
+  padding:4px 10px;border-radius:999px;letter-spacing:.05em;text-transform:uppercase
+}
+.hero h1{font-family: "Merriweather", ui-serif, Georgia, serif; font-size:60px; line-height:1.1; margin:6px 0 4px 0}
+.hero h2{font-family: "Merriweather", ui-serif, Georgia, serif; font-size:40px; line-height:1.1; margin:6px 0 4px 0}
+.hero p{color: darkslategray ; font-size:23px ;max-width:1000px;margin:8px 0 0 0}
+
+/* --- SECTION --- */
+.section{margin:26px 0 22px 0;border-top:4px solid var(--line);padding-top:22px}
+.section h2{
+  font-family:"Merriweather", ui-serif, Georgia, serif;
+  font-size:40px; line-height:1.2; margin:0 0 6px 0; color: white;
+}
+.section .lede{color: white; font-size:23px; margin:6px 0 14px 0; line-height:1.6}
+.section .lede2{color:darkslategray; font-size:23px; margin:6px 0 14px 0; line-height:1.6}
+
+.panel{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:14px 14px 8px 14px;
+  box-shadow: var(--shadow);
+}
+
+.grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:16px}
+.col-6{grid-column: span 6}
+.col-12{grid-column: span 12}
+
+.figure{width:100%; min-height:420px; border-radius:12px; overflow:hidden}
+.caption{font-size:13px; color:#6a7aa0; margin:8px 2px 6px 2px}
+
+/* --- Notes --- */
+.note{
+  background:#f7fbff;border:1px dashed #cfe0ff;color:#345;
+  padding:10px 12px;border-radius:12px;margin-top:8px;font-size:14px
+}
+
+/* Print-friendly (optional) */
+@media print{
+  body{background:#fff}
+  .hero, .panel{box-shadow:none}
+  .wrapper{max-width:960px}
+  .figure{min-height:320px}
+}
+
+.vega-bind-name {
+  font-weight: 700;
+  color: #222;
+}

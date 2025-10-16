@@ -1,0 +1,111 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+
+  "data": {
+    "url": "https://jlee0368.github.io/Data_Visualisation_2/data/MyRTKnet_station_loc_cleaned.csv",
+    "format": { "type": "csv", "parse": { "Latitude": "number", "Longitude": "number" } }
+  },
+
+  "title": {"text": "Scatterplot of MyRTKnet Station Locations by Distance from Nearest City", "fontSize": 24},
+
+  "params": [
+    {
+      "name": "state_filter",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Johor",
+          "Kedah",
+          "Kelantan",
+          "Melaka",
+          "Negeri Sembilan",
+          "Pahang",
+          "Perak",
+          "Perlis",
+          "Pulau Pinang",
+          "Sabah",
+          "Sarawak",
+          "Selangor",
+          "Terengganu",
+          "Kuala Lumpur",
+          "Putrajaya",
+          "Labuan"
+        ],
+        "name": "Select State: "
+      }
+    }
+  ],
+
+  "transform": [
+    {
+      "calculate": "datum.State === 'W.P. Kuala Lumpur' ? 'Kuala Lumpur' : datum.State === 'W.P. Putrajaya' ? 'Putrajaya' : datum.State === 'W.P. Labuan' ? 'Labuan' : datum.State",
+      "as": "State_key"
+    },
+    {
+      "filter": "state_filter == 'All' || datum.State_key == state_filter"
+    },
+    {
+      "lookup": "State_key",
+      "from": {
+        "data": { "url": "https://jlee0368.github.io/Data_Visualisation_2/data/malaysian_cities.csv" },
+        "key": "admin_name",
+        "fields": ["city", "lat", "lng", "population"],
+        "transform": [
+          { "filter": "datum.country === 'Malaysia' && isValid(datum.admin_name)" },
+          { "calculate": "toNumber(datum.population)", "as": "pop" },
+          { "window": [{ "op": "rank", "as": "r" }], "sort": [{ "field": "pop", "order": "descending" }], "groupby": ["admin_name"] },
+          { "filter": "datum.r === 1" }
+        ]
+      },
+      "as": ["city", "city_lat", "city_lon", "pop"]
+    },
+    { "calculate": "0.017453292519943295 * datum.Latitude", "as": "lat1" },
+    { "calculate": "0.017453292519943295 * datum.Longitude", "as": "lon1" },
+    { "calculate": "0.017453292519943295 * toNumber(datum.city_lat)", "as": "lat2" },
+    { "calculate": "0.017453292519943295 * toNumber(datum.city_lon)", "as": "lon2" },
+    { "calculate": "2 * 6371 * asin(sqrt(pow(sin((datum.lat2 - datum.lat1)/2),2) + cos(datum.lat1)*cos(datum.lat2)*pow(sin((datum.lon2 - datum.lon1)/2),2)))", "as": "dist_km" },
+    { "filter": "isValid(datum.dist_km) && !isNaN(datum.dist_km)" }
+  ],
+
+  "width": 900,
+  "height": 350,
+
+  "mark": { "type": "circle", "opacity": 0.9 },
+
+  "encoding": {
+    "x": {
+      "field": "Longitude",
+      "type": "quantitative",
+      "axis": { "grid": false, "title": "Longitude" },
+      "scale": { "domain": [97, 121], "nice": false, "zero": false }
+    },
+    "y": {
+      "field": "Latitude",
+      "type": "quantitative",
+      "axis": { "grid": false, "title": "Latitude"},
+      "scale": { "domain": [0.8, 7.2], "nice": false, "zero": false }
+    },
+    "size": { "value": 70 },
+    "color": {
+      "field": "dist_km",
+      "type": "quantitative",
+      "title": "Distance (km)",
+      "scale": { "domain": [0, 25, 50, 100, 200], "scheme": "yellowgreenblue" }
+    },
+    "tooltip": [
+      { "field": "Name", "title": "Station" },
+      { "field": "State" },
+      { "field": "city", "title": "Nearest City" },
+      { "field": "dist_km", "title": "Distance (km)", "format": ".1f" },
+      { "field": "Latitude" },
+      { "field": "Longitude" }
+    ]
+  },
+
+  "config": {
+    "view": { "stroke": "#eeeeee" },
+    "axis": { "labelFontSize": 15, "titleFontSize": 12 }
+  }
+}

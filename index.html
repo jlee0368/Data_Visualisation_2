@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MyRTKnet — Poster-Style Network Insights</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+  <style>
+    body {
+      background-image: url('https://jlee0368.github.io/Data_Visualisation_2/data/nightsky.jpg'); 
+      background-repeat: no-repeat; 
+      background-size: cover; 
+      background-attachment: fixed;
+    }
+    </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- HERO -->
+    <header class="hero panel">
+      <div class="kickers">
+        <span class="pill">MyRTKnet</span>
+        <span class="pill">Malaysia</span>
+        <span class="pill">GNSS Reference Network</span>
+      </div>
+      <p><br></p>
+      <h1>Malaysia MyRTKnet Network</h1>
+      <p><br></p>
+      <h2>What are they? 📡</h2>
+      <p><br></p>
+      <p>MyRTKnet is Malaysia's nationwide <strong>Real-Time Kinematic GNSS reference station network</strong>, maintained by the <strong>Department of Survey and Mapping Malaysia (JUPEM)</strong>. Its goal is to provide real-time GNSS corrections so that users (surveyors, GIS systems, field users) can get centimeter-level accuracy continuously across the country.</p>
+      <p><br></p>
+      <div class="caption"><strong>source 1:</strong> https://archive.data.gov.my/data/en_US/dataset/senarai-lokasi-stesen-rangkaian-myrtknet-di-malaysia/resource/5ebbc4ed-3b5e-45fd-bc19-351edf0f2131?inner_span=True</div>
+      <div class="caption"><strong>source 2:</strong> https://simplemaps.com/data/my-cities</div>
+    </header>
+
+    <!-- HOW IT WORKS MAP -->
+    <section class="section">
+      <h2>How it works? 🛰️</h2>
+      <p><br></p>
+      <div class="panel">
+      <p>
+        <ul>
+          <li class="lede2">Permanent reference stations are distributed across Malaysia</li>
+          <li class="lede2">These stations stream GNSS observations continuously to a central control center at JUPEM</li>
+          <li class="lede2">The control center processes corrections and generates network correction streams</li>
+          <li class="lede2">Users connect via internet/data link to receive these corrections real time</li>
+        </ul>
+      </p>
+      </div>
+    </section>
+
+    <!-- OVERVIEW MAP -->
+    <section class="section">
+      <h2>Network Overview — Stations &amp; Major Cities</h2>
+      <p><br></p>
+      <div class="panel">
+        <div id="vis-map" class="figure" role="img" aria-label="Map of MyRTKnet stations and cities"></div>
+      </div>
+      <p><br></p>
+      <p class="lede">The MyRTKnet reference stations are strategically distributed across both <strong>Peninsular Malaysia</strong> and <strong>East Malaysia</strong> (Sabah and Sarawak). Every major region is covered, confirming that JUPEM's network design ensures consistent <strong>nationwide GNSS correction services</strong>. Coverage density is higher along the west coast corridor of Peninsular Malaysia, aligning with population and economic centers like <strong>Klang Valley</strong>, <strong>Penang</strong> and <strong>Johor Bahru</strong>.</p>
+      <p><br></p>
+      <p class="lede">City markers vary in opacity by population, with darker grey circles represent denser urban populations. You'll notice that <strong>urban clusters</strong> (Kuala Lumpur, Penang, Johor Bahru, Kuching, Kota Kinabalu) coincide with the <strong>highest density of MyRTKnet stations</strong>, reinforcing optimized access for engineering and infrastructure applications in economically active areas. In contrast, <strong>inner regions</strong> of Sabah and Sarawak show <strong>fewer stations per square kilometer</strong>, highlighting areas where signal redundancy or backhaul infrastructure may be more challenging.</p>
+      <p><br></p>
+    </section>
+
+    <!-- REMOTENESS LOLLIPOP -->
+    <section class="section">
+      <h2>How Remote Are Stations? — Distance to Nearest City</h2>
+      <p><br></p>
+      <div class="panel">
+        <div id="vis-lollipop" class="figure" role="img" aria-label="Lollipop chart of station-to-city distance"></div>
+        <div class="caption">Note: This lollipop chart covers only the 25th percentile (Q1), Median (marked as blue circle) and 75th percentile(Q3).</div>
+      </div>
+      <p><br></p>
+      <p class="lede">The chart reveals clear geographic disparities in station remoteness across Malaysia. <strong>Sabah and Sarawak</strong> stand out with median distances <strong>exceeding 150 km</strong>, and wide Q1-Q3 ranges, meaning many stations there are <strong>far from urban centers</strong>. In contrast, states in <strong>Peninsular Malaysia</strong>, especially Selangor, Negeri Sembilan, Perak, Pulau Pinang, and Melaka, have much <strong>smaller distances</strong> (typically below 50 km), showing that their reference stations are well integrated into city networks.</p>
+      <p><br></p>
+      <p class="lede">For <strong>Sabah and Sarawak</strong>, technicians must <strong>plan for longer travel times</strong> and possibly <strong>off-grid logistics</strong> (fuel, power, and connectivity backups). The <strong>high spread</strong> in these states suggests <strong>access difficulty varies sharply</strong> between coastal and interior sites. For <strong>Pahang and Terengganu</strong>, moderate distances (median ~100 km) indicate a mix of <strong>accessible lowlands</strong> and <strong>mountainous</strong> interior stations that need specialized transport or weather-dependent scheduling. For <strong>urban corridor states</strong>, compact Q1-Q3 ranges indicate consistent, reliable <strong>accessibility</strong> and routine maintenance can be coordinated efficiently.</p>
+      <p><br></p>
+    </section>
+
+    <!-- TERRAIN ELEVATION -->
+    <section class="section">
+      <h2>Terrain &amp; Siting Elevation</h2>
+      <p><br></p>
+      <div class="grid">
+        <div class="panel col-6">
+          <div id="vis-height-hist" class="figure"></div>
+        </div>
+        <div class="panel col-6">
+          <div id="vis-height-state" class="figure"></div>
+        </div>
+      </div>
+      <p><br></p>
+      <p class="lede">XXX</p>
+      <p><br></p>
+      <p class="lede">XXX</p>
+      <p><br></p>
+    </section>
+
+    <!-- HARDWARE MIX -->
+    <section class="section">
+      <h2>Hardware Mix by Receiver Model</h2>
+      <p><br></p>
+      <div class="panel">
+        <div id="vis-receiver-bar" class="figure"></div>
+        <div class="caption">Note: Filter by minimum elevation and see which models dominate high-altitude sites.</div>
+      </div>
+      <p><br></p>
+      <p class="lede">XXX</p>
+      <p><br></p>
+      <p class="lede">XXX</p>
+      <p><br></p>
+    </section>
+
+    <!-- GEO SCATTER -->
+    <section class="section">
+      <h2>Where Are Stations Far/Near from Cities?</h2>
+      <p><br></p>
+      <div class="panel">
+        <div id="vis-distance-scatter" class="figure"></div>
+        <div class="caption">Note: Filter by state to quickly see the stations that are in that state.</div>
+      </div>
+      <p><br></p>
+      <p class="lede">XXX</p>
+      <p><br></p>
+      <p class="lede">XXX</p>
+      <p><br></p>
+    </section>
+
+    <!-- CLOSER -->
+    <section class="section">
+      <h2>Toward a Resilient MyRTKnet</h2>
+      <p><br></p>
+      <div class="panel">
+        <p class="lede2">Building a resilient MyRTKnet involves not only <strong>expanding coverage</strong> but also ensuring real-time <strong>fault monitoring</strong> and <strong>interoperability</strong> with next-generation GNSS constellations.
+        Continued investment in site upgrades, power reliability, and data-sharing infrastructure will ensure the network supports <strong>precise positioning</strong> <strong>disaster resilience</strong>, and <strong>smart nation initiatives</strong> for years to come.</p>
+        <p class="caption">Academic note: Station-city distances computed using geodesic (haversine) distance between coordinates in WGS84 projection.</p>
+      </div>
+    </section>
+
+  </div>
+
+  <script>
+    // Embed all charts using filenames
+    mount('#vis-map', 'js/map.vg.json');
+    mount('#vis-lollipop', 'js/lollipop.vg.json');
+    mount('#vis-height-hist', 'js/bc_station_by_height.vg.json');
+    mount('#vis-height-state', 'js/bp_height_by_state.vg.json');
+    mount('#vis-receiver-bar', 'js/bc_station_by_receiver.vg.json');
+    mount('#vis-distance-scatter', 'js/scatterplot_distance_from_city.vg.json');
+
+    function mount(id, spec){ 
+      vegaEmbed(id, spec, {actions:false, renderer:'canvas'})
+      .catch(err => {
+        const el=document.querySelector(id);
+        if(el){
+          el.innerHTML = '<div class="note">Could not load <code>'+spec+'</code>. Ensure the filename is correct and located beside index.html.</div>';
+        }
+        console.error('Embed failed for', spec, err);
+      });
+    }
+    
+  </script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://jlee0368.github.io/Data_Visualisation_2/data/MyRTKnet_station_loc_cleaned.csv"
+  },
+  "title": {
+    "text": "Number of MyRTKnet Stations by Receiver Type",
+    "anchor": "middle",
+    "fontSize": 20
+  },
+  "width": 1000,
+  "height": 500,
+  "params": [
+    {
+      "name": "min_height_filter",
+      "value": 0,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 1200,
+        "step": 1,
+        "name": "Minimum Elevation (m): "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum['Height in meter'] >= min_height_filter"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {"type": "bar", "tooltip": true},
+      "encoding": {
+        "x": {
+          "field": "Receiver Type",
+          "type": "nominal",
+          "axis": {"title": "Receiver Model", "grid": false, "titleFontSize": 12, "labelAngle": 0},
+          "sort": "-y"
+        },
+        "y": {
+          "aggregate": "count",
+          "field": "Receiver Type",
+          "type": "quantitative",
+          "title": "Number of Stations",
+          "axis": {
+            "tickMinStep": 1,
+            "format": "d",
+            "grid": false,
+            "titleFontSize": 12
+  }
+        },
+        "color": {
+          "field": "Receiver Type",
+          "type": "nominal",
+          "title": "Receiver Type",
+          "scale": {
+          "domain": ["TRIMBLE NETR5", "LEICA GR25", "TRIMBLE NETR9", "LEICA GR50"],
+          "range": ["#ff6b6b", "#4f9dff", "#65c466", "#f5b14c"]
+        },
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "Receiver Type", "title": "Receiver Model"},
+          {"aggregate": "count", "title": "Total Stations", "format": ","}
+        ]
+      }
+    }
+  ]
+}
+

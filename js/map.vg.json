@@ -1,0 +1,156 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 900,
+  "height": 400,
+  "title": {"text": "MyRTKnet Station Network and Major Malaysian Cities", "fontSize": 24},
+  "projection": {"type": "mercator", "center": [109.5, 4.5], "scale": 2500},
+  "layer": [
+    {
+      "data": {"sphere": true},
+      "mark": {"type": "geoshape", "fill": "#dbeeff"}  
+    },
+    {
+      "data": {"url": "https://jlee0368.github.io/Data_Visualisation_2/js/my.json", "format": {"type": "json"}},
+      "mark": {"type": "geoshape", "fill": "#c8e6c9", "stroke": "white"}   
+    },
+    {
+      "data": {"graticule": {"step": [1, 1]}},        
+      "mark": {"type": "geoshape", "fill": null, "stroke": "#b0c4de", "strokeWidth": 0.5}
+    },
+    {
+      "data": {"url": "https://jlee0368.github.io/Data_Visualisation_2/data/malaysian_cities.csv"},
+      "transform": [
+        {"calculate": "toNumber(datum['lat'])", "as": "city_lat"},
+        {"calculate": "toNumber(datum['lng'])", "as": "city_lon"},
+        {"calculate": "toNumber(datum['population'])", "as": "pop"}
+      ],
+      "mark": {
+        "type": "circle",
+        "color": "#646464",
+        "size": 50,
+        "strokeWidth": 0.8
+      },
+      "encoding": {
+        "longitude": {"field": "city_lon", "type": "quantitative"},
+        "latitude": {"field": "city_lat", "type": "quantitative"},
+        "opacity": {
+          "field": "pop",
+          "type": "quantitative",
+          "title": "City Population",
+          "scale": {"range": [0.3, 0.9]}, 
+          "legend": {"format": "s", "orient": "right"} 
+        },
+        "tooltip": [
+          {"field": "city", "title": "City"},
+          {"field": "admin_name", "title": "State/Admin"},
+          {"field": "population", "title": "Population", "format": ","}
+        ]
+      }
+    },
+    {
+      "data": {"url": "https://jlee0368.github.io/Data_Visualisation_2/data/MyRTKnet_station_loc_cleaned.csv"},
+      "transform": [
+        {"calculate": "toNumber(datum['Latitude'])", "as": "lat"},
+        {"calculate": "toNumber(datum['Longitude'])", "as": "lon"},
+        {"calculate": "toNumber(datum['Height in meter'])", "as": "height_m"}
+      ],
+      "mark": {
+          "type": "circle", 
+          "opacity": 0.85, 
+          "stroke": "white", 
+          "strokeWidth": 0.5,
+          "size": 50
+      },
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "color": {
+          "field": "Receiver Type",
+          "type": "nominal",
+          "title": "Receiver Type",
+          "scale": {
+          "domain": ["TRIMBLE NETR5", "LEICA GR25", "TRIMBLE NETR9", "LEICA GR50"],
+          "range": ["#ff6b6b", "#4f9dff", "#65c466", "#f5b14c"]
+        },
+          "legend": {"orient": "right"}
+        },
+        "shape": {
+          "field": "Antenna Type",
+          "type": "nominal",
+          "title": "Antenna Type",
+          "legend": {"orient": "right"}
+        },
+        "tooltip": [
+          {"field": "Name", "title": "Name"},
+          {"field": "Code", "title": "Code"},
+          {"field": "Receiver Type", "title": "Receiver"},
+          {"field": "Antenna Type", "title": "Antenna"},
+          {"field": "Height in meter", "title": "Height (m)"}
+        ]
+      }
+    },
+    {
+  "data": {
+    "values": [
+      {
+        "label": "Klang Valley",
+        "lat": 3.1390,
+        "lon": 101.6869,
+        "text_lat": 3.4,
+        "text_lon": 102.2
+      },
+      {
+        "label": "Penang",
+        "lat": 5.4145,
+        "lon": 100.3354,
+        "text_lat": 5.8,
+        "text_lon": 101.0
+      },
+      {
+        "label": "Johor Bahru",
+        "lat": 1.4927,
+        "lon": 103.7414,
+        "text_lat": 1.9,
+        "text_lon": 104.4
+      }
+    ]
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#2b2b2b",
+        "strokeWidth": 1.3
+      },
+      "encoding": {
+        "longitude": { "field": "lon", "type": "quantitative" },
+        "latitude":  { "field": "lat", "type": "quantitative" },
+        "longitude2": { "field": "text_lon", "type": "quantitative" },
+        "latitude2":  { "field": "text_lat", "type": "quantitative" }
+      }    
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "dy": 0,
+        "fontSize": 13,
+        "fontWeight": "bold",
+        "fill": "#0b1b34",
+        "stroke": "white",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "longitude": { "field": "text_lon", "type": "quantitative" },
+        "latitude":  { "field": "text_lat", "type": "quantitative" },
+        "text":      { "field": "label" }
+      }
+    }
+  ]
+}
+
+ 
+  ],
+  "config": {"view": {"stroke": null}}
+}

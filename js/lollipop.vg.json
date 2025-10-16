@@ -1,0 +1,69 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://jlee0368.github.io/Data_Visualisation_2/data/MyRTKnet_station_loc_cleaned.csv",
+    "format": { "type": "csv", "parse": { "Latitude": "number", "Longitude": "number" } }
+  },
+  "transform": [
+    { "calculate": "datum.State === 'W.P. Kuala Lumpur' ? 'Kuala Lumpur' : datum.State === 'W.P. Putrajaya' ? 'Putrajaya' : datum.State === 'W.P. Labuan' ? 'Labuan' : datum.State", "as": "State_key" },
+    {
+      "lookup": "State_key",
+      "from": {
+        "data": { "url": "https://jlee0368.github.io/Data_Visualisation_2/data/malaysian_cities.csv" },
+        "key": "admin_name",
+        "fields": ["city","lat","lng"],
+        "transform": [
+          { "filter": "datum.country === 'Malaysia' && isValid(datum.admin_name)" },
+          { "calculate": "toNumber(datum.population)", "as": "pop" },
+          { "window": [ { "op": "rank", "as": "r" } ], "sort": [ { "field": "pop", "order": "descending" } ], "groupby": ["admin_name"] },
+          { "filter": "datum.r === 1" }
+        ]
+      },
+      "as": ["city","city_lat","city_lon"]
+    },
+    { "calculate": "0.017453292519943295 * datum.Latitude",  "as": "lat1" },
+    { "calculate": "0.017453292519943295 * datum.Longitude", "as": "lon1" },
+    { "calculate": "0.017453292519943295 * toNumber(datum.city_lat)", "as": "lat2" },
+    { "calculate": "0.017453292519943295 * toNumber(datum.city_lon)", "as": "lon2" },
+    { "calculate": "2 * 6371 * asin(sqrt(pow(sin((datum.lat2 - datum.lat1)/2),2) + cos(datum.lat1)*cos(datum.lat2)*pow(sin((datum.lon2 - datum.lon1)/2),2)))", "as": "dist_km" },
+    { "filter": "isValid(datum.dist_km) && !isNaN(datum.dist_km)" },
+    {
+      "aggregate": [
+        { "op": "median", "field": "dist_km", "as": "med" },
+        { "op": "q1",     "field": "dist_km", "as": "q1"  },
+        { "op": "q3",     "field": "dist_km", "as": "q3"  }
+      ],
+      "groupby": ["State"]
+    }
+  ],
+  "width": 900,
+  "height": { "step": 26 },
+  "encoding": {
+    "y": { "field": "State", "type": "ordinal", "sort": { "field": "med", "order": "descending" }, "title": null }
+  },
+  "layer": [
+    {
+      "mark": { "type": "rule", "strokeWidth": 4 },
+      "encoding": {
+        "x": { "field": "q1", "type": "quantitative", "title": "Distance to nearest city (km)",  "axis" : {"titleFontSize": 13} },
+        "x2": { "field": "q3" },
+        "color": { "value": "#A8A8A8" },
+        "tooltip": [
+          { "field": "q1", "title": "Q1 (km)", "format": ".1f" },
+          { "field": "med", "title": "Median (km)", "format": ".1f" },
+          { "field": "q3", "title": "Q3 (km)", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "mark": { "type": "point", "filled": true, "size": 90 },
+      "encoding": {
+        "x": { "field": "med", "type": "quantitative" },
+        "color": { "value": "#1f77b4" }
+      }
+    }
+  ],
+  "config": { "view": { "stroke": null } },
+  "title": {"text": "Distribution of MyRTKnet Station to Nearest City Distance by state", "fontSize":24}
+}
+
