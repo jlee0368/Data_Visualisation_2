@@ -56,7 +56,7 @@
           "title": "Receiver Type",
           "scale": {
           "domain": ["TRIMBLE NETR5", "LEICA GR25", "TRIMBLE NETR9", "LEICA GR50"],
-          "range": ["#0072B2", "#E69F00", "#009E73", "#D55E00"]
+          "range": ["#0072B2", "#E69F00", "#009E73", "#CC79A7"]
         },
           "legend": null
         },
