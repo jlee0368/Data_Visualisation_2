@@ -92,7 +92,7 @@
       "field": "dist_km",
       "type": "quantitative",
       "title": "Distance (km)",
-      "scale": { "domain": [0, 25, 50, 100, 200], "scheme": "yellowgreenblue" }
+      "scale": { "domain": [0, 25, 50, 100, 200, 400, 800], "scheme": "yellowgreenblue" }
     },
     "tooltip": [
       { "field": "Name", "title": "Station" },
