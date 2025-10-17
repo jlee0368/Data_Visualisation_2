@@ -18,35 +18,36 @@
       "mark": {"type": "geoshape", "fill": null, "stroke": "#b0c4de", "strokeWidth": 0.5}
     },
     {
-      "data": {"url": "https://jlee0368.github.io/Data_Visualisation_2/data/malaysian_cities.csv"},
-      "transform": [
-        {"calculate": "toNumber(datum['lat'])", "as": "city_lat"},
-        {"calculate": "toNumber(datum['lng'])", "as": "city_lon"},
-        {"calculate": "toNumber(datum['population'])", "as": "pop"}
-      ],
-      "mark": {
-        "type": "circle",
-        "color": "#646464",
-        "size": 50,
-        "strokeWidth": 0.8
-      },
-      "encoding": {
-        "longitude": {"field": "city_lon", "type": "quantitative"},
-        "latitude": {"field": "city_lat", "type": "quantitative"},
-        "opacity": {
-          "field": "pop",
-          "type": "quantitative",
-          "title": "City Population",
-          "scale": {"range": [0.3, 0.9]}, 
-          "legend": {"format": "s", "orient": "right"} 
-        },
-        "tooltip": [
-          {"field": "city", "title": "City"},
-          {"field": "admin_name", "title": "State/Admin"},
-          {"field": "population", "title": "Population", "format": ","}
-        ]
-      }
+    "data": {"url": "https://jlee0368.github.io/Data_Visualisation_2/data/malaysian_cities.csv"},
+    "transform": [
+      {"calculate": "toNumber(datum['lat'])", "as": "city_lat"},
+      {"calculate": "toNumber(datum['lng'])", "as": "city_lon"},
+      {"calculate": "toNumber(datum['population'])", "as": "pop"}
+    ],
+    "mark": {
+      "type": "circle",
+      "color": "#646464",
+      "stroke": "white",
+      "strokeWidth": 0.8
     },
+    "encoding": {
+      "longitude": {"field": "city_lon", "type": "quantitative"},
+      "latitude": {"field": "city_lat", "type": "quantitative"},
+      "size": {
+        "field": "pop",
+        "type": "quantitative",
+        "title": "City Population",
+        "scale": {"range": [30, 1500]},
+        "legend": {"format": "s", "orient": "right"}
+      },
+      "opacity": {"value": 0.35},
+      "tooltip": [
+        {"field": "city", "title": "City"},
+        {"field": "admin_name", "title": "State/Admin"},
+        {"field": "population", "title": "Population", "format": ","}
+      ]
+    }
+},
     {
       "data": {"url": "https://jlee0368.github.io/Data_Visualisation_2/data/MyRTKnet_station_loc_cleaned.csv"},
       "transform": [
@@ -56,7 +57,7 @@
       ],
       "mark": {
           "type": "circle", 
-          "opacity": 0.85, 
+          "opacity": 1, 
           "stroke": "white", 
           "strokeWidth": 0.5,
           "size": 50
@@ -96,22 +97,22 @@
         "label": "Klang Valley",
         "lat": 3.1390,
         "lon": 101.6869,
-        "text_lat": 3.4,
-        "text_lon": 102.2
+        "text_lat": 5,
+        "text_lon": 105
       },
       {
         "label": "Penang",
         "lat": 5.4145,
         "lon": 100.3354,
-        "text_lat": 5.8,
-        "text_lon": 101.0
+        "text_lat": 7.5,
+        "text_lon": 104
       },
       {
         "label": "Johor Bahru",
         "lat": 1.4927,
         "lon": 103.7414,
-        "text_lat": 1.9,
-        "text_lon": 104.4
+        "text_lat": 3.2,
+        "text_lon": 106.5
       }
     ]
   },
@@ -135,7 +136,7 @@
         "align": "left",
         "dx": 6,
         "dy": 0,
-        "fontSize": 13,
+        "fontSize": 15,
         "fontWeight": "bold",
         "fill": "#0b1b34",
         "stroke": "white",

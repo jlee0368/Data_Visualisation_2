@@ -1,0 +1,42 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 900,
+  "height": 400,
+  "title": {"text": "Major Malaysian Cities by Population", "fontSize": 24},
+  "projection": {"type": "mercator", "center": [109.5, 4.5], "scale": 2500},
+  "layer": [
+    {"data": {"sphere": true}, "mark": {"type": "geoshape", "fill": "#dbeeff"}},
+    {
+      "data": {"url": "https://jlee0368.github.io/Data_Visualisation_2/js/my.json"},
+      "mark": {"type": "geoshape", "fill": "#c8e6c9", "stroke": "white"}
+    },
+    {
+      "data": {"graticule": {"step": [1, 1]}},
+      "mark": {"type": "geoshape", "fill": null, "stroke": "#b0c4de", "strokeWidth": 0.5}
+    },
+    {
+      "data": {"url": "https://jlee0368.github.io/Data_Visualisation_2/data/malaysian_cities.csv"},
+      "transform": [
+        {"filter": "datum.country === 'Malaysia'"},
+        {"calculate": "toNumber(datum.lat)", "as": "city_lat"},
+        {"calculate": "toNumber(datum.lng)", "as": "city_lon"},
+        {"calculate": "toNumber(datum.population)", "as": "pop"},
+        {"window":[{"op":"rank","as":"r"}], "sort":[{"field":"pop","order":"descending"}], "groupby":["admin_name"]},
+        {"filter":"datum.r === 1"}  
+      ],
+      "mark": {"type": "circle", "color": "#646464", "stroke": "white", "strokeWidth": 0.6},
+      "encoding": {
+        "longitude": {"field": "city_lon", "type": "quantitative"},
+        "latitude": {"field": "city_lat", "type": "quantitative"},
+        "size": {"field": "pop", "type": "quantitative", "title": "Population", "scale": {"range": [30, 1000]}},
+        "opacity": {"value": 0.85},
+        "tooltip": [
+          {"field": "city", "title": "City"},
+          {"field": "admin_name", "title": "State/Admin"},
+          {"field": "population", "title": "Population", "format": ","}
+        ]
+      }
+    }
+  ],
+  "config": {"view": {"stroke": null}}
+}

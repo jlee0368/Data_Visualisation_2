@@ -6,26 +6,68 @@
   "transform": [
     {"calculate": "toNumber(datum['Height in meter'])", "as": "height_m"}
   ],
-  "mark": {"type": "bar", "color": "#009dff"},
-  "encoding": {
-    "x": {
-      "field": "height_m", 
-      "bin": {"maxbins": 30}, 
-      "type": "quantitative", 
-      "title": "Station Height Range (m)",
-      "axis" : {"titleFontSize": 12}
+  "layer": [
+    {
+      "mark": {"type": "bar", "color": "#009dff"},
+      "encoding": {
+        "x": {
+          "field": "height_m", 
+          "bin": {"maxbins": 30}, 
+          "type": "quantitative", 
+          "title": "Station Height Range (m)",
+          "axis" : {"titleFontSize": 12}
+        },
+        "y": {
+          "aggregate": "count", 
+          "type": "quantitative", 
+          "title": "Number of Stations",
+          "axis": {"grid": false, "titleFontSize": 12} 
+        },
+        "tooltip": [ 
+          {"aggregate": "count", "title": "Number of MyRTKnet Stations"}
+        ]
+      }
     },
-    "y": {
-      "aggregate": "count", 
-      "type": "quantitative", 
-      "title": "Number of Stations",
-      "axis": {"grid": false, "titleFontSize": 12} 
+    {
+      "data": { "values": [
+        {"x_data_point": 100, "y_data_point": 40, "x_text": 600, "y_text": 29, "text": "Most Stations Below 100m", "align": "center", "baseline": "bottom"},
+        {"x_data_point": 1100, "y_data_point": 1, "x_text": 600, "y_text": 12, "text": "Few High-Elevation Stations (Outliers)", "align": "center", "baseline": "top"}
+      ]},
+      "mark": {
+        "type": "text",
+        "fontWeight": "bold",
+        "fontSize": 14,
+        "color": "black",
+        "opacity": 0.9
+      },
+      "encoding": {
+        "x": {"field": "x_text", "type": "quantitative"},
+        "y": {"field": "y_text", "type": "quantitative"},
+        "text": {"field": "text"},
+        "align": {"field": "align"},
+        "baseline": {"field": "baseline"}
+      }
     },
-    "tooltip": [ 
-      {"aggregate": "count", "title": "Number of MyRTKnet Stations"}
-    ]
-  },
-  "title": {"text": "Network Elevation Distribution (Histogram)", "fontSize": 24},
+    {
+      "data": { "values": [
+        {"x_data_start": 100, "y_data_start": 38, "x_line_end": 600, "y_line_end": 30},
+        {"x_data_start": 1100, "y_data_start": 1, "x_line_end": 600, "y_line_end": 11}
+      ]},
+      "mark": {
+        "type": "rule",
+        "strokeDash": [4, 2],
+        "opacity": 0.8,
+        "stroke": "black"
+      },
+      "encoding": {
+        "x": {"field": "x_data_start", "type": "quantitative"},
+        "y": {"field": "y_data_start", "type": "quantitative"},
+        "x2": {"field": "x_line_end", "type": "quantitative"},
+        "y2": {"field": "y_line_end", "type": "quantitative"}
+      }
+    }
+  ],
+  "title": {"text": "Histogram of MyRTKnet Station Heights", "fontSize": 24},
   "width": 400,
   "height": 400,
   "config": {"view": {"stroke": null}}

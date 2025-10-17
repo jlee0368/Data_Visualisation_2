@@ -37,9 +37,24 @@
       <p><br></p>
       <p>MyRTKnet is Malaysia's nationwide <strong>Real-Time Kinematic GNSS reference station network</strong>, maintained by the <strong>Department of Survey and Mapping Malaysia (JUPEM)</strong>. Its goal is to provide real-time GNSS corrections so that users (surveyors, GIS systems, field users) can get centimeter-level accuracy continuously across the country.</p>
       <p><br></p>
-      <div class="caption"><strong>source 1:</strong> https://archive.data.gov.my/data/en_US/dataset/senarai-lokasi-stesen-rangkaian-myrtknet-di-malaysia/resource/5ebbc4ed-3b5e-45fd-bc19-351edf0f2131?inner_span=True</div>
-      <div class="caption"><strong>source 2:</strong> https://simplemaps.com/data/my-cities</div>
     </header>
+
+    <!--SOURCES -->
+    <div class="panel">
+        <div class="caption"><strong>source 1:</strong> https://archive.data.gov.my/data/en_US/dataset/senarai-lokasi-stesen-rangkaian-myrtknet-di-malaysia/resource/5ebbc4ed-3b5e-45fd-bc19-351edf0f2131?inner_span=True</div>
+        <div class="caption"><strong>source 2:</strong> https://simplemaps.com/data/my-cities</div>
+    </div>
+
+    <!-- DETAILS -->
+      <section class="section">
+        <div class="panel">
+          <h3>
+            <span>Author: Lee Jian Jun Thomas</span>
+            <span>Course: FIT 3179 - Data Visualisation 2</span> 
+            <span>Date: October 2025</span> 
+          </h3>
+        </div>
+      </section>
 
     <!-- HOW IT WORKS MAP -->
     <section class="section">
@@ -67,22 +82,18 @@
       <p><br></p>
       <p class="lede">The MyRTKnet reference stations are strategically distributed across both <strong>Peninsular Malaysia</strong> and <strong>East Malaysia</strong> (Sabah and Sarawak). Every major region is covered, confirming that JUPEM's network design ensures consistent <strong>nationwide GNSS correction services</strong>. Coverage density is higher along the west coast corridor of Peninsular Malaysia, aligning with population and economic centers like <strong>Klang Valley</strong>, <strong>Penang</strong> and <strong>Johor Bahru</strong>.</p>
       <p><br></p>
-      <p class="lede">City markers vary in opacity by population, with darker grey circles represent denser urban populations. You'll notice that <strong>urban clusters</strong> (Kuala Lumpur, Penang, Johor Bahru, Kuching, Kota Kinabalu) coincide with the <strong>highest density of MyRTKnet stations</strong>, reinforcing optimized access for engineering and infrastructure applications in economically active areas. In contrast, <strong>inner regions</strong> of Sabah and Sarawak show <strong>fewer stations per square kilometer</strong>, highlighting areas where signal redundancy or backhaul infrastructure may be more challenging.</p>
-      <p><br></p>
     </section>
 
-    <!-- REMOTENESS LOLLIPOP -->
+    <!-- REMOTENESS -->
     <section class="section">
       <h2>How Remote Are Stations? — Distance to Nearest City</h2>
       <p><br></p>
       <div class="panel">
         <div id="vis-lollipop" class="figure" role="img" aria-label="Lollipop chart of station-to-city distance"></div>
-        <div class="caption">Note: This lollipop chart covers only the 25th percentile (Q1), Median (marked as blue circle) and 75th percentile(Q3).</div>
+        <div class="caption">Note: This chart covers only the 25th percentile (Q1), Median (marked as blue circle) and 75th percentile(Q3).</div>
       </div>
       <p><br></p>
-      <p class="lede">The chart reveals clear geographic disparities in station remoteness across Malaysia. <strong>Sabah and Sarawak</strong> stand out with median distances <strong>exceeding 150 km</strong>, and wide Q1-Q3 ranges, meaning many stations there are <strong>far from urban centers</strong>. In contrast, states in <strong>Peninsular Malaysia</strong>, especially Selangor, Negeri Sembilan, Perak, Pulau Pinang, and Melaka, have much <strong>smaller distances</strong> (typically below 50 km), showing that their reference stations are well integrated into city networks.</p>
-      <p><br></p>
-      <p class="lede">For <strong>Sabah and Sarawak</strong>, technicians must <strong>plan for longer travel times</strong> and possibly <strong>off-grid logistics</strong> (fuel, power, and connectivity backups). The <strong>high spread</strong> in these states suggests <strong>access difficulty varies sharply</strong> between coastal and interior sites. For <strong>Pahang and Terengganu</strong>, moderate distances (median ~100 km) indicate a mix of <strong>accessible lowlands</strong> and <strong>mountainous</strong> interior stations that need specialized transport or weather-dependent scheduling. For <strong>urban corridor states</strong>, compact Q1-Q3 ranges indicate consistent, reliable <strong>accessibility</strong> and routine maintenance can be coordinated efficiently.</p>
+      <p class="lede">The chart reveals clear geographic disparities in station remoteness across Malaysia. <strong>Sabah and Sarawak</strong> stand out with median distances <strong>exceeding 150 km</strong>, and wide Q1-Q3 ranges, meaning many stations there are <strong>far from urban centers</strong>. In contrast, states in <strong>Peninsular Malaysia</strong>, especially Selangor, Negeri Sembilan, Perak, Pulau Pinang, and Melaka, have much <strong>smaller distances</strong> (typically below 50 km), showing that their reference stations are well integrated into city networks. <strong>Melaka</strong> has the <strong>smallest median distance</strong>, possibly due to Melaka being a <strong>small state</strong>.</p>
       <p><br></p>
     </section>
 
@@ -102,10 +113,10 @@
       <p class="lede">The histogram of MyRTKnet station heights shows a <strong>strong skew</strong> toward <strong>low-lying elevations</strong>.
       <strong>Over 80%</strong> of stations are sited <strong>below 200 m above mean sea level</strong>, reflecting the concentration of Malaysia's urban and coastal population centers.
       Only a handful of stations <strong>exceed 600 m</strong>, representing those positioned on <strong>upland or interior terrain</strong> (notably in Pahang and Sabah).
-      This elevation distribution confirms that the network primarily supports lowland users, where most geospatial, cadastral, and engineering activities occur.</p>
+      </p>
       <p><br></p>
       <p class="lede">The box plot highlights how station elevation varies geographically.
-      <strong>Sabah and Pahang</strong> exhibit the <strong>widest elevation ranges</strong>, with stations extending <strong>above 1,000 m</strong>, indicative of deployment across rugged, mountainous terrain. Most <strong>west-coast states</strong> (Selangor, Negeri Sembilan, Melaka, Johor) cluster tightly <strong>below 100 m</strong>, emphasizing accessibility and ease of maintenance. <strong>Sarawak</strong> stations remain relatively low but geographically dispersed, mirroring the state's <strong>broad</strong> but gently undulating terrain. Together, these visuals reveal how terrain directly shapes siting strategy: states with mountainous interiors require elevated installations for <strong>signal visibility</strong> and <strong>network continuity</strong>, while flat coastal states achieve full coverage from lower elevations.</p>
+      <strong>Sabah and Pahang</strong> exhibit the <strong>widest elevation ranges</strong>, with stations extending <strong>above 1,000 m</strong>, indicative of deployment across rugged, mountainous terrain. Most <strong>west-coast states</strong> (Selangor, Negeri Sembilan, Melaka, Johor) cluster tightly <strong>below 100 m</strong>, emphasizing accessibility and ease of maintenance.</p>
       <p><br></p>
     </section>
 
@@ -113,24 +124,21 @@
     <section class="section">
       <h2>Receiver Model</h2>
       <p><br></p>
-      <div class="panel">
-        <div id="vis-receiver-bar" class="figure"></div>
-        <div class="caption">Note: Filter by minimum elevation and see which models dominate high-altitude sites.</div>
+        <div class="grid receiver-section">
+          <div class="panel col-12">
+            <div id="vis-receiver-bar" class="figure"></div>
+            <div class="caption">Note: Filter by minimum elevation and see which models dominate high-altitude sites.</div>
+          </div>
+
+          <div class="text-block">
+            <p class="lede">
+              The network is dominated by two receiver families: <strong>TRIMBLE NETR5</strong> and <strong>LEICA GR25</strong>.
+              The other two appear in small numbers, which are likely <strong>newer point upgrades</strong> or 
+              <strong>site-specific replacements</strong>. Operationally, this means we only need to track 
+              two primary firmware and spare-parts (Trimble vs Leica).
+            </p>
+          </div>
       </div>
-      <p><br></p>
-      <p class="lede">The network is dominated by two receiver families: TRIMBLE NETR5 and LEICA GR25.These two appear in small numbers, which are likely newer point upgrades or site-specific replacements.Operationally, this means we only need to track two primary firmware and spare-parts (Trimble vs Leica).</p>
-      <p><br></p>
-      <h2>Antenna families</h2>
-      <p><br></p>
-      <p class="lede">Most entries are listed with “NONE” radome, due to higher exposure to ice, salt spray, and birds. In coastal or high-rain sites, radomes or anti-perch hardware are added to reduce maintenance and multipath. For other, it predominantly consists of TRM55971.00 (Trimble Zephyr Geodetic series) and LEIAR10 (Leica AR10).</p>
-      <p><br></p>
-      <h2>Monuments and mounts</h2>
-      <p><br></p>
-      <p class="lede">Mix of ground monuments (2-6 m concrete pillars) and stainless-steel roof mounts on public buildings/schools..</p>
-      <p><br></p>
-      <h2>Satellite constellations</h2>
-      <p><br></p>
-      <p class="lede">Most receivers are recorded as “GPS and GLONASS”. GPS (Global Positioning System) is a satellite-based hyperbolic navigation system owned by the United States Space Force and operated by Mission Delta 31, while GLONASS is a Russian satellite navigation system operating as part of a radionavigation-satellite service. </p>
       <p><br></p>
     </section>
 
@@ -140,12 +148,11 @@
       <p><br></p>
       <div class="panel">
         <div id="vis-distance-scatter" class="figure"></div>
-        <div class="caption">Note: Filter by state to quickly see the stations that are in that state.</div>
       </div>
       <p><br></p>
-      <p class="lede">XXX</p>
+      <p class="lede">The visualization reveals two major station clusters, representing <strong>Peninsular Malaysia</strong> (longitudes 97-105°E) and <strong>East Malaysia</strong> (110-121°E). This geographic split aligns with Malaysia's <strong>natural division</strong> across the <strong>South China Sea</strong>, a clear sign that the RTK network is distributed to serve both regions independently.</p>
       <p><br></p>
-      <p class="lede">XXX</p>
+      <p class="lede">Most stations in both regions exhibit <strong>shorter distances</strong> (<200 km) from the nearest major city, reflected by the lighter green points. A smaller subset of stations (darker blue) are <strong>500 km away</strong> from the nearest city, primarily in <strong>interior Sabah and Sarawak</strong>, as well as <strong>eastern Pahang</strong> and <strong>northern Perak</strong>.</p>
       <p><br></p>
     </section>
 
@@ -159,6 +166,18 @@
         <p class="caption">Academic note: Station-city distances computed using geodesic (haversine) distance between coordinates in WGS84 projection.</p>
       </div>
     </section>
+
+    <!-- END -->
+    <section class="section">
+      <div class="panel">
+        <p class="lede3">
+          <span>© 2025 Lee Jian Jun Thomas. Created with Vega-Lite for FIT3179 Data Visualisation.
+        </span>
+        </p>
+        
+      </div>
+    </section>
+
 
   </div>
 

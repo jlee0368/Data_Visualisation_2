@@ -61,9 +61,61 @@
         "x": { "field": "med", "type": "quantitative" },
         "color": { "value": "#1f77b4" }
       }
+    },
+    {
+      "data": { "values": [
+        {"State": "Sarawak", "x_data_start": 200, "y_data_start_band": 0.5, "x_text_target": 250, "y_text_target_state": "Terengganu", "y_text_target_band": 0.5, "text": "Largest Spread (IQR)"},
+        {"State": "Melaka", "x_data_start": 10.0, "y_data_start_band": 0.5, "x_text_target": 180, "y_text_target_state": "Selangor", "y_text_target_band": 0.5, "text": "Smallest Median Distance"}
+      ]},
+      "layer": [
+        {
+          "mark": { "type": "rule", "strokeDash": [4, 2], "opacity": 0.8, "stroke": "black" },
+          "encoding": {
+            "x": {"field": "x_data_start", "type": "quantitative"},
+            "x2": {"field": "x_text_target", "type": "quantitative"},
+            "y": {"field": "State", "type": "ordinal", "band": {"field": "y_data_start_band"}},
+            "y2": {"field": "y_text_target_state", "type": "ordinal", "band": {"field": "y_text_target_band"}}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontWeight": "bold",
+            "fontSize": 20,
+            "color": "black",
+            "opacity": 0.9
+          },
+          "transform": [{"filter": "datum.State === 'Sarawak'"}],
+          "encoding": {
+            "x": {"field": "x_text_target", "type": "quantitative"},
+            "y": {"field": "y_text_target_state", "type": "ordinal", "band": {"field": "y_text_target_band"}},
+            "text": {"field": "text"},
+            "dy": {"value": -5}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontWeight": "bold",
+            "fontSize": 20,
+            "color": "black",
+            "opacity": 0.9
+          },
+          "transform": [{"filter": "datum.State === 'Melaka'"}],
+          "encoding": {
+            "x": {"field": "x_text_target", "type": "quantitative"},
+            "y": {"field": "y_text_target_state", "type": "ordinal", "band": {"field": "y_text_target_band"}},
+            "text": {"field": "text"},
+            "dy": {"value": 5}
+          }
+        }
+      ]
     }
   ],
   "config": { "view": { "stroke": null } },
-  "title": {"text": "Distribution of MyRTKnet Station to Nearest City Distance by state", "fontSize":24}
+  "title": {"text": "MyRTKnet Station to Nearest City Distance by state", "fontSize":24}
 }
-

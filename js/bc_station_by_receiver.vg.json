@@ -8,8 +8,8 @@
     "anchor": "middle",
     "fontSize": 20
   },
-  "width": 1000,
-  "height": 500,
+  "width": 500,
+  "height": 250,
   "params": [
     {
       "name": "min_height_filter",
@@ -48,7 +48,7 @@
             "format": "d",
             "grid": false,
             "titleFontSize": 12
-  }
+          }
         },
         "color": {
           "field": "Receiver Type",
@@ -65,7 +65,80 @@
           {"aggregate": "count", "title": "Total Stations", "format": ","}
         ]
       }
+    },
+    
+    {
+      "data": { "values": [
+        {"model": "TRIMBLE NETR5", "x_data_start": "TRIMBLE NETR9", "y_data_start": 40, "x_text": "TRIMBLE NETR9", "y_text": 40, "text": ["Top two models",  "account for", "> 95% of the network"]},
+        {"model": "TRIMBLE NETR9", "x_data_start": "LEICA GR50", "y_data_start": 7, "x_text": "LEICA GR50", "y_text": 7, "text": ["Bottom two models", "have a", "negligible presence"]}
+      ]},
+      "layer": [
+        {
+          "mark": { "type": "rule", "strokeDash": [4, 2], "opacity": 0.8, "stroke": "black" },
+          "encoding": {
+            "x": {
+              "field": "x_data_start",
+              "type": "nominal",
+              "band": 0.5,
+              "sort": {"op": "count", "field": "Receiver Type", "order": "descending"}
+            },
+            "x2": {
+              "field": "x_text",
+              "type": "nominal",
+              "band": 0.5,
+              "sort": {"op": "count", "field": "Receiver Type", "order": "descending"}
+            },
+            "y": {"field": "y_data_start", "type": "quantitative"},
+            "y2": {"field": "y_text", "type": "quantitative"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "bottom",
+            "fontWeight": "bold",
+            "fontSize": 12,
+            "color": "black",
+            "opacity": 0.9,
+            "dy": -5
+          },
+          "transform": [{"filter": "datum.model === 'TRIMBLE NETR5'"}],
+          "encoding": {
+            "x": {
+              "field": "x_text",
+              "type": "nominal",
+              "band": 0.5,
+              "sort": {"op": "count", "field": "Receiver Type", "order": "descending"}
+            },
+            "y": {"field": "y_text", "type": "quantitative"},
+            "text": {"field": "text"}
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "center",
+            "baseline": "bottom",
+            "fontWeight": "bold",
+            "fontSize": 12,
+            "color": "black",
+            "opacity": 0.9,
+            "dy": -5
+          },
+          "transform": [{"filter": "datum.model === 'TRIMBLE NETR9'"}],
+          "encoding": {
+            "x": {
+              "field": "x_text",
+              "type": "nominal",
+              "band": 0.5,
+              "sort": {"op": "count", "field": "Receiver Type", "order": "descending"}
+            },
+            "y": {"field": "y_text", "type": "quantitative"},
+            "text": {"field": "text"}
+          }
+        }
+      ]
     }
   ]
 }
-

@@ -8,6 +8,7 @@
     { "filter": "!isNaN(datum.height_m)" }
   ],
   "layer": [
+
     {
       "mark": { "type": "boxplot", "extent": "min-max", "outliers": true, "size": 18 },
       "encoding": {
@@ -22,6 +23,7 @@
         "color": { "field": "State", "type": "nominal", "legend": null }
       }
     },
+    
     {
       "transform": [
         {
@@ -48,10 +50,90 @@
           { "field": "max",    "type": "quantitative",  "title": "Max Height (m)", "format": ".2f" }
         ]
       }
+    },
+    
+  
+    {
+      "data": { "values": [
+       
+        {"State": "Pahang", "x_data_start": 1110, "y_data_start_band": 0.5, "x_text_target": 900, "y_text_target_state": "Kelantan", "y_text_target_band": 0.5, "text": "Highest Max Elevation"},
+    
+        {"State": "Sabah", "x_data_start": 150, "y_data_start_band": 0.5, "x_text_target": 600, "y_text_target_state": "Sarawak", "y_text_target_band": 0.5, "text": "Highest Median Elevation"}
+     
+      ]},
+      "layer": [
+   
+        {
+          "mark": { "type": "rule", "strokeDash": [4, 2], "opacity": 0.8, "stroke": "black" },
+          "encoding": {
+            "x": {"field": "x_data_start", "type": "quantitative"},
+            "x2": {"field": "x_text_target", "type": "quantitative"},
+            "y": {"field": "State", "type": "nominal", "band": {"field": "y_data_start_band"}},
+            "y2": {"field": "y_text_target_state", "type": "nominal", "band": {"field": "y_text_target_band"}}
+          }
+        },
+   
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "middle",
+            "fontWeight": "bold",
+            "fontSize": 14,
+            "color": "black",
+            "opacity": 0.9,
+            "dx": 5
+          },
+          "transform": [{"filter": "datum.State === 'Pahang'"}],
+          "encoding": {
+            "x": {"field": "x_text_target", "type": "quantitative"},
+            "y": {"field": "y_text_target_state", "type": "nominal", "band": {"field": "y_text_target_band"}},
+            "text": {"field": "text"}
+          }
+        },
+  
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontWeight": "bold",
+            "fontSize": 14,
+            "color": "black",
+            "opacity": 0.9,
+            "dx": 5
+          },
+          "transform": [{"filter": "datum.State === 'Sabah'"}],
+          "encoding": {
+            "x": {"field": "x_text_target", "type": "quantitative"},
+            "y": {"field": "y_text_target_state", "type": "nominal", "band": {"field": "y_text_target_band"}},
+            "text": {"field": "text"}
+          }
+        },
+       
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "fontWeight": "bold",
+            "fontSize": 14,
+            "color": "black",
+            "opacity": 0.9,
+            "dx": 5
+          },
+          "transform": [{"filter": "datum.State === 'Labuan'"}],
+          "encoding": {
+            "x": {"field": "x_text_target", "type": "quantitative"},
+            "y": {"field": "y_text_target_state", "type": "nominal", "band": {"field": "y_text_target_band"}},
+            "text": {"field": "text"}
+          }
+        }
+      ]
     }
   ],
-  "title": {"text": "Elevation by State (Box Plot)", "fontSize": 24},
-  "width": 400,
+  "title": {"text": "Distribution of MyRTKnet Station Heights by State", "fontSize": 24},
+  "width": 300,
   "height": 400,
   "config": { "view": { "stroke": null } }
 }
