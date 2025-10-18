@@ -70,7 +70,7 @@
     },
     {
       "data": { "values": [
-        {"id": "peninsula_cluster", "x_data_point": 103, "y_data_point": 4, "x_text": 107, "y_text": 5, "text": ["Dense network in", "Peninsular Malaysia"]},
+        {"id": "peninsula_cluster", "x_data_point": 103, "y_data_point": 3.5, "x_text": 107, "y_text": 5, "text": ["Dense network in", "Peninsular Malaysia"]},
         {"id": "east_malaysia_cluster", "x_data_point": 114.5, "y_data_point": 4, "x_text": 116.5, "y_text": 2.5, "text": ["More remote stations", "in East Malaysia"]}
       ]},
       "layer": [

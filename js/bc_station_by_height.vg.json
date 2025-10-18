@@ -68,7 +68,7 @@
     }
   ],
   "title": {"text": "Histogram of MyRTKnet Station Heights", "fontSize": 24},
-  "width": 400,
-  "height": 400,
+  "width": 500,
+  "height": 550,
   "config": {"view": {"stroke": null}}
 }

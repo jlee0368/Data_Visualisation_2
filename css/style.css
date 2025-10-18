@@ -41,7 +41,7 @@ body{
 .hero h1{font-family: "Merriweather", ui-serif, Georgia, serif; font-size:60px; line-height:1.1; margin:6px 0 4px 0}
 .hero h2{font-family: "Merriweather", ui-serif, Georgia, serif; font-size:40px; line-height:1.1; margin:6px 0 4px 0}
 
-.hero p{color: darkslategray ; font-size:23px ;max-width:1000px;margin:8px 0 0 0}
+.hero p{color: rgb(0, 0, 0) ; font-size:30px ;max-width:1000px; line-height:1.6; margin:6px 0 0 0}
 
 /* --- SECTION --- */
 .section{margin:26px 0 22px 0;border-top:4px solid var(--line);padding-top:22px}
@@ -50,9 +50,9 @@ body{
   font-size:40px; line-height:1.2; margin:0 0 6px 0; color: white;
 }
 .section h3{font-family: "Merriweather", ui-serif, Georgia, serif; font-size:15px; line-height:1.1; justify-content:space-between; align-items:center; gap:1rem; display:flex; padding: 0 8%; margin:6px 0 4px 0}
-.section .lede{color: white; font-size:23px; font-weight: 300; margin:6px 0 14px 0; line-height:1.6;}
-.section .lede2{color:darkslategray; font-size:23px; font-weight: 300; margin:6px 0 14px 0; line-height:1.6}
-.section .lede3{color:darkslategray; font-size:12px; font-weight: 300; margin:6px 0 14px 0; line-height:1.6}
+.section .lede{color: white; font-size:31px; font-weight: 300; margin:6px 0 14px 0; line-height:1.6;}
+.section .lede2{color:rgb(0, 0, 0); font-size:30px; font-weight: 500; margin:6px 0 14px 0; line-height:1.6}
+.section .lede3{color:rgb(0, 0, 0); font-size:12px; font-weight: 300; margin:6px 0 14px 0; line-height:1.6}
 .section .lede strong {
   color: white;
   font-weight: 1000;

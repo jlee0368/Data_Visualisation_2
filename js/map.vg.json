@@ -4,6 +4,27 @@
   "height": 400,
   "title": {"text": "MyRTKnet Station Network and Major Malaysian Cities", "fontSize": 24},
   "projection": {"type": "mercator", "center": [109.5, 4.5], "scale": 2500},
+  
+  "params": [
+    {
+      "name": "receiver_filter",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",  
+          "TRIMBLE NETR5", 
+          "LEICA GR25", 
+          "TRIMBLE NETR9", 
+          "LEICA GR50",
+          "None"
+        ],
+        "name": "Filter by Receiver:",
+        "labels": ["All", "TRIMBLE NETR5", "LEICA GR25", "TRIMBLE NETR9", "LEICA GR50", "None"]
+      },
+      "value": "All"
+    }
+  ],
+  
   "layer": [
     {
       "data": {"sphere": true},
@@ -53,7 +74,10 @@
       "transform": [
         {"calculate": "toNumber(datum['Latitude'])", "as": "lat"},
         {"calculate": "toNumber(datum['Longitude'])", "as": "lon"},
-        {"calculate": "toNumber(datum['Height in meter'])", "as": "height_m"}
+        {"calculate": "toNumber(datum['Height in meter'])", "as": "height_m"},
+        {
+          "filter": "receiver_filter == 'All' || receiver_filter == 'None' ? receiver_filter == 'All' : datum['Receiver Type'] == receiver_filter"
+        }
       ],
       "mark": {
           "type": "circle", 
