@@ -56,7 +56,7 @@
       ]},
       "layer": [
         {
-          "mark": { "type": "rule", "strokeDash": [4, 2], "opacity": 0.8, "stroke": "black" },
+          "mark": { "type": "rule", "strokeDash": [10, 10], "opacity": 0.8, "stroke": "black" },
           "encoding": {
             "x": {
               "field": "x_data_start",

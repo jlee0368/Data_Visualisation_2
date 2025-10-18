@@ -64,7 +64,7 @@
       "layer": [
    
         {
-          "mark": { "type": "rule", "strokeDash": [4, 2], "opacity": 0.8, "stroke": "black" },
+          "mark": { "type": "rule", "strokeDash": [7, 7], "opacity": 0.8, "stroke": "black" },
           "encoding": {
             "x": {"field": "x_data_start", "type": "quantitative"},
             "x2": {"field": "x_text_target", "type": "quantitative"},
@@ -132,8 +132,8 @@
       ]
     }
   ],
-  "title": {"text": "Distribution of MyRTKnet Station Heights by State", "fontSize": 24},
-  "width": 300,
+  "title": {"text": "Distribution of MyRTKnet Station Heights", "fontSize": 24},
+  "width": 450,
   "height": 400,
   "config": { "view": { "stroke": null } }
 }

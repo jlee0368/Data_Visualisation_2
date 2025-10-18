@@ -76,7 +76,7 @@
       "layer": [
 
         {
-          "mark": { "type": "rule", "strokeDash": [4, 2], "opacity": 0.8, "stroke": "black" },
+          "mark": { "type": "rule", "strokeDash": [7, 7], "opacity": 0.8, "stroke": "black"},
           "encoding": {
             "x": {"field": "x_data_point", "type": "quantitative"},
             "y": {"field": "y_data_point", "type": "quantitative"},
@@ -98,21 +98,8 @@
           "encoding": {
             "x": {"field": "x_text", "type": "quantitative"},
             "y": {"field": "y_text", "type": "quantitative"},
-            "text": {"field": "text"},
-            "dx": {
-              "condition": [
-                {"test": "datum.id === 'peninsula_cluster'", "value": 5},
-                {"test": "datum.id === 'east_malaysia_cluster'", "value": -5}
-              ],
-              "value": 0
-            },
-            "dy": {
-              "condition": [
-                {"test": "datum.id === 'peninsula_cluster'", "value": 5},
-                {"test": "datum.id === 'east_malaysia_cluster'", "value": 5}
-              ],
-              "value": 0
-            }
+            "text": {"field": "text"}
+          
           }
         }
       ]

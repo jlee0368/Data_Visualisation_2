@@ -30,32 +30,31 @@
     },
     {
       "data": { "values": [
-        {"x_data_point": 100, "y_data_point": 40, "x_text": 600, "y_text": 29, "text": "Most Stations Below 100m", "align": "center", "baseline": "bottom"},
-        {"x_data_point": 1100, "y_data_point": 1, "x_text": 600, "y_text": 12, "text": "Few High-Elevation Stations (Outliers)", "align": "center", "baseline": "top"}
+        {"x_data_point": 100, "y_data_point": 40, "x_text": 600, "y_text": 28.5, "text": "Most Stations Are Below 100m", "align": "center", "baseline": "bottom"},
+        {"x_data_point": 1100, "y_data_point": 1, "x_text": 800, "y_text": 15, "text": "Few High-Elevation Stations (Outliers)", "align": "center", "baseline": "top"}
       ]},
       "mark": {
         "type": "text",
         "fontWeight": "bold",
-        "fontSize": 14,
+        "fontSize": 18,
         "color": "black",
-        "opacity": 0.9
+        "opacity": 0.9,
+        "align": "center"
       },
       "encoding": {
         "x": {"field": "x_text", "type": "quantitative"},
         "y": {"field": "y_text", "type": "quantitative"},
-        "text": {"field": "text"},
-        "align": {"field": "align"},
-        "baseline": {"field": "baseline"}
+        "text": {"field": "text"}
       }
     },
     {
       "data": { "values": [
         {"x_data_start": 100, "y_data_start": 38, "x_line_end": 600, "y_line_end": 30},
-        {"x_data_start": 1100, "y_data_start": 1, "x_line_end": 600, "y_line_end": 11}
+        {"x_data_start": 1100, "y_data_start": 1, "x_line_end": 800, "y_line_end": 13.8}
       ]},
       "mark": {
         "type": "rule",
-        "strokeDash": [4, 2],
+        "strokeDash": [7, 7],
         "opacity": 0.8,
         "stroke": "black"
       },
