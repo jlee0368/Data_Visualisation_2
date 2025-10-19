@@ -99,6 +99,20 @@
       <p><br></p>
     </section>
 
+    <!-- GEO SCATTER -->
+    <section class="section">
+      <h2>Where Are Stations located? — A Closer Look</h2>
+      <p><br></p>
+      <div class="panel">
+        <div id="vis-distance-scatter" class="figure"></div>
+      </div>
+      <p><br></p>
+      <p class="lede">Most MyRTKnet stations lie <strong>close to urban centers</strong>, shown by the dense clusters of <strong>lighter points</strong> across both Peninsular and East Malaysia.
+      In contrast, <strong>darker point</strong> in the <strong>interiors of Sabah and Sarawak</strong> indicate stations located far from major cities, which are essential for <strong>extending national coverage</strong> across remote, mountainous regions.
+      This distribution highlights how the network balances <strong>accessibility</strong> in populated lowlands with <strong>strategic installations</strong> in rural terrain.</p>
+      <p><br></p>
+    </section>
+
     <!-- TERRAIN ELEVATION -->
     <section class="section">
       <h2>Terrain &amp; Siting Elevation</h2>
@@ -129,7 +143,7 @@
       </div>
     </section>
 
-    <!-- HARDWARE MIX -->
+    <!-- RECEIVER -->
     <section class="section">
       <h2>Receiver Model</h2>
       <p><br></p>
@@ -150,17 +164,21 @@
       <p><br></p>
     </section>
 
-    <!-- GEO SCATTER -->
+    <!-- ANTENNA -->
     <section class="section">
-      <h2>Where Are Stations Far/Near from Cities?</h2>
+      <h2>Antenna Model</h2>
       <p><br></p>
-      <div class="panel">
-        <div id="vis-distance-scatter" class="figure"></div>
+        <div class="grid antenna-section">
+          <div class="panel col-12">
+            <div id="vis-antenna-bar" class="figure"></div>
+          </div>
+
+          <div class="text-block">
+            <p class="lede">
+              The network consists of only two types of antenna which are of almost <strong>equal usage</strong> across the stations.
+            </p>
+          </div>
       </div>
-      <p><br></p>
-      <p class="lede">Most MyRTKnet stations lie <strong>close to urban centers</strong>, shown by the dense clusters of <strong>lighter points</strong> across both Peninsular and East Malaysia.
-      In contrast, <strong>darker point</strong> in the <strong>interiors of Sabah and Sarawak</strong> indicate stations located far from major cities, which are essential for <strong>extending national coverage</strong> across remote, mountainous regions.
-      This distribution highlights how the network balances <strong>accessibility</strong> in populated lowlands with <strong>strategic installations</strong> in rural terrain.</p>
       <p><br></p>
     </section>
 
@@ -196,6 +214,7 @@
     mount('#vis-height-hist', 'js/bc_station_by_height.vg.json');
     mount('#vis-height-state', 'js/bp_height_by_state.vg.json');
     mount('#vis-receiver-bar', 'js/bc_station_by_receiver.vg.json');
+    mount('#vis-antenna-bar', 'js/bc_station_by_antenna.vg.json');
     mount('#vis-distance-scatter', 'js/scatterplot_distance_from_city.vg.json');
 
     function mount(id, spec){ 

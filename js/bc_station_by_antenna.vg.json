@@ -1,0 +1,47 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://jlee0368.github.io/Data_Visualisation_2/data/MyRTKnet_station_loc_cleaned.csv"
+  },
+  "title": {
+    "text": "Number of MyRTKnet Stations by Antenna Type",
+    "anchor": "middle",
+    "fontSize": 20},
+  "width": 400,
+  "height": 100,
+  "transform": [
+    {"calculate": "trim(datum['Antenna Type'])", "as": "antenna_type"}
+  ],
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "antenna_type", 
+      "type": "nominal", 
+      "title": "Antenna Type",
+
+      "sort": {"op": "count", "field": "antenna_type", "order": "descending"}
+    },
+    "x": {
+      "aggregate": "count", 
+      "type": "quantitative", 
+      "title": "Number of Stations"
+    },
+    "color": {
+      "field": "antenna_type",
+      "type": "nominal",
+      "legend": null,
+      "scale": {
+        "range": ["#999999", "#56B4E9"] 
+      }
+    },
+    "tooltip": [
+      {"field": "antenna_type", "title": "Antenna Type"},
+      {"aggregate": "count", "title": "Station Count", "format": ","}
+    ]
+  },
+  "config": {
+    "view": {"stroke": null},
+    "axisY": {"titlePadding": 10},
+    "axisX": {"titlePadding": 10}
+  }
+}

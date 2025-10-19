@@ -113,4 +113,25 @@ body{
   max-width: 420px;           /* controls line length for readability */
 }
 
+/* Antenna station graph */
+.antenna-section {
+  display: flex;
+  justify-content: center;    /* centers content within section */
+  align-items: flex-start;    /* top align chart + text */
+  gap: 3rem;                  /* space between chart and text */
+  margin: 2rem auto;
+  flex-wrap: wrap;            /* stack nicely on smaller screens */
+}
+
+.antenna-section .panel {
+  flex: 1 1 55%;              /* chart takes about half the width */
+  min-width: 480px;           /* prevents chart from shrinking too much */
+  max-height: 200px           /* NOTE: This height is very small for the Antenna Type bar chart; you may want to increase this value (e.g., to 400px) for better readability. */
+}
+
+.antenna-section .text-block {
+  flex: 1 1 35%;              /* text takes ~1/3 width */
+  max-width: 420px;           /* controls line length for readability */
+}
+
 
